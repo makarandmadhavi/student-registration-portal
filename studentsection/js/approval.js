@@ -16,8 +16,12 @@ function approving(roll,name) {
                 
                 
                 if (data == "SS") {
-                    alert("ss!");
-                } 
+                    alert("Approved!");
+                    $("table").load("index.php table");
+                }
+                else {
+                    alert("Error");
+                }
                 
             }
         });

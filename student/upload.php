@@ -9,14 +9,13 @@
 <script src="../assets/bootstrap.min.js"></script>
 <script src="js/upload.js"></script>
 <style type="text/css">
-	td{
-    text-align: center;
-    padding-bottom:10px; 
-    padding-left:10px;
-    padding-right: 10px;
-    padding-top: 10px;
+    td {
+        text-align: center;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
     }
-
 </style>
 <div id="content">
 
@@ -47,8 +46,8 @@
             </div>
         </div>
     </nav>
-     <br>
-     <!-- <h4>Instructions to students</h4>
+    <br>
+    <!-- <h4>Instructions to students</h4>
 
         <ul>
             <li>Phasellus iaculis t portt porttitor sem laoreettitor sem laoreetulis neque</li>
@@ -59,116 +58,122 @@
             <li>Vestibulum laor t porttitor sem laoreeteet porttitor sem laoreet porttitor sem</li>
             <li>Ac tristique lib Phasellus ero volutpat at</li>
         </ul> -->
-        <br>
-        
-            
-<form method="post" enctype="multipart/form-data" action="backend/uploadfile.php">
-    <div class="table-responsive table-hover table-striped">
-        <table class="table" width="300">
-            <thead align="center">
-                <tr>
-                    <th>Document no</th>
-                    <th> Select Document</th>
-                    <th>Choose file</th>
-                    <th>Upload file</th>
-                </tr>
-            </thead>
-        
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>
-                        <select class="dropdown" style="display:inline"  name="doc1" id="doc1">
-                            <option value="Marksheet-Sem 1" id="Marksheet-Sem 1" >
-                            Marksheet-Sem 1
-                            </option>
-                            <option value="Marksheet-Sem 2">
-                            Marksheet-Sem 2
-                            </option>
-                            <option value="Marksheet-Sem 3">
-                            Marksheet-Sem 3
-                            </option>
-                            <option value="Marksheet-Sem 4">
-                            Marksheet-Sem 4
-                            </option>
-                            <option value="Marksheet-Sem 5">
-                            Marksheet-Sem 5
-                            </option>
-                            <option value="Marksheet-Sem 6">
-                            Marksheet-Sem 6
-                            </option>
-                            <option value="Marksheet-Sem 7">
-                            Marksheet-Sem 7
-                            </option>
-                            <option value="Hall Ticket">
-                            Hall Ticket
-                            </option>
-                            <option value="Caste Validity Certificate">
-                            Caste Validity Certificate
-                            </option>
-                            <option value="DTE Allotment Letter">
-                            DTE Allotment Letter
-                            </option>
-        
-                        </select>
-            
-                    </td> 
-                    <td><input type="file" name="file1" ></td>
-           
-            
-           
-                    <td><input type="submit" name="1" size="4" class="btn btn-success" ></input></td>
-                    
-                </tr>
+    <br>
 
-            </tbody>
-       </table>
-    </div>
-</form>
 
-        <br>
-        <br>
-        <H3 align="center">UPLOADED DOCUMENTS</H3>
-        <br>
-        
+    <form method="post" enctype="multipart/form-data" action="backend/uploadfile.php">
+        <div class="table-responsive table-hover table-striped">
+            <table class="table" width="300">
+                <thead align="center">
+                    <tr>
 
-       <?php  $row=getdocuments($_SESSION['username']); 
+                        <th>Document</th>
+                        <th>Choose file</th>
+                        <th>Upload file</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                        include '../studentsection/backend/getdata.php'; 
+                        $student = getdata($_SESSION['username']);
+                        //print_r($student);
+                        ?>
+                    <tr>
+                        
+                        <td>
+                            <select class="dropdown" style="display:inline" name="doc1" id="doc1">
+                                <option value="Marksheet-Sem 1" id="Marksheet-Sem 1">
+                                    Marksheet-Sem 1
+                                </option>
+                                <option value="Marksheet-Sem 2">
+                                    Marksheet-Sem 2
+                                </option>
+                                <option value="Marksheet-Sem 3">
+                                    Marksheet-Sem 3
+                                </option>
+                                <option value="Marksheet-Sem 4">
+                                    Marksheet-Sem 4
+                                </option>
+                                <option value="Marksheet-Sem 5">
+                                    Marksheet-Sem 5
+                                </option>
+                                <option value="Marksheet-Sem 6">
+                                    Marksheet-Sem 6
+                                </option>
+                                <option value="Marksheet-Sem 7">
+                                    Marksheet-Sem 7
+                                </option>
+                                <option value="Hall Ticket">
+                                    Hall Ticket
+                                </option>
+                                <option value="Caste Validity Certificate">
+                                    Caste Validity Certificate
+                                </option>
+                                <option value="DTE Allotment Letter">
+                                    DTE Allotment Letter
+                                </option>
+
+                            </select>
+
+                        </td>
+                        <td><input type="file" name="file1"></td>
+
+
+
+                        <td><input type="submit" name="1" size="4" class="btn btn-success"></input></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+    <br>
+    <br>
+    <H3 align="center">UPLOADED DOCUMENTS</H3>
+    <br>
+
+
+    <?php  $row=getdocuments($_SESSION['username']); 
         
             
         ?>
-        <table class="table table-hover table-striped" align="center">
-                <thead align="center">
-                    <tr>
-                        <th scope="col">roll</th>
-                        <th scope="col">document</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($row as $data) { 
-                ?>
-                    <tr>
-                        <td><?=$data['roll']?></td>
-                        <td><a href="<?=$data['doc_url']?>"><?=$data['name']?></a></td>
-                    </tr>
-                    
-                <?php }
-                ?>
-                </tbody>
-        </table>
+    <table class="table table-hover table-striped" align="center">
+        <thead align="center">
+            <tr>
+                <th scope="col">roll</th>
+                <th scope="col">document</th>
 
-        <br>
-        <br>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($row as $data) { 
+                ?>
+            <tr>
+                <td><?=$data['roll']?></td>
+                <td><a href="<?=$data['doc_url']?>"><?=$data['name']?></a></td>
+            </tr>
 
-        <button type="submit" name="1" size="4" class="btn btn-info btn-lg"  style="margin-left: 40%"><a href="student_final_form.php">Next</a></button>
+            <?php }
+                ?>
+        </tbody>
+    </table>
+
+    <br>
+    <br>
+
+    <button type="submit" name="1" size="4" class="btn btn-info btn-lg" style="margin-left: 40%"><a
+            href="student_final_form.php">Next</a></button>
 
 </div>
-    
- 
-    
-    
 
 
-    
+
+
+
+
+
 
 <?php include '../templates/footer.html'; ?>

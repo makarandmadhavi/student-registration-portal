@@ -16,9 +16,11 @@ function approving(roll,name) {
                 console.log(data);
                 if (data == "HOD") {
                     alert("Approved by hod!! ");
+                    $("table").load("index.php table");
                 } 
                 if (data == "CC") {
                     alert("Approved by CC!!");
+                    $("table").load("index.php table");
                 } 
                 
             }

@@ -10,7 +10,7 @@
     
 	$filename=$_FILES['file1']['name'];
 	$tempname=$_FILES['file1']['tmp_name'];
-	$folder1="C:/xampp/htdocs/student-registration-portal/uploadedfiles/".$roll."+".$filename;
+	$folder1="../uploadedfiles/".$roll."+".$filename;
 	$doc_url="../uploadedfiles/".$roll."+".$filename;
     //$file1=$data["file1"];
 	move_uploaded_file($tempname, $folder1);

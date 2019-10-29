@@ -7,7 +7,7 @@
 <!-- Sidebar  -->
 <nav id="sidebar">
     <div class="sidebar-header">
-        <h3>Welcome, HOD/CC!</h3>
+        <h3>Welcome, <?=$_SESSION['username']?>!</h3>
         <strong>SS</strong>
     </div>
 
@@ -76,6 +76,7 @@
     
                 <?php 
                     $rows=getapproved($_SESSION['username']) ;
+                    //print_r($rows);
                     foreach($rows as $row){?>
                     <th scope="row"><?=$row['roll_num']?></th>
                     <td><?=$row['student_name']?></td>

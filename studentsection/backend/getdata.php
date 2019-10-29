@@ -85,7 +85,11 @@ function getunapproved($user){
             case when ROW_NUMBER() over (PARTITION BY student.name order by documents_submitted.name)=1 
             then student.name else '' end as 'student_name',
             
-            
+            case when ROW_NUMBER() over (PARTITION BY student.name order by documents_submitted.name)=1 
+            then student.department else '' end as 'department',
+
+            case when ROW_NUMBER() over (PARTITION BY student.name order by documents_submitted.name)=1 
+            then student.division else '' end as 'division',
             
             case when ROW_NUMBER() over (PARTITION BY documents_submitted.roll order by documents_submitted.name)=1 
             then approval.stud_section else '' end as 'ssapp',

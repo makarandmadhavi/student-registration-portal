@@ -4,38 +4,10 @@
 <script src="js/form.js"></script>
 <script src="js/approval.js"></script>
 <script src="js/send.js"></script>
+<script src="js/filter.js"></script>
+
 <!-- Sidebar  -->
-<nav id="sidebar">
-    <div class="sidebar-header">
-        <h3>Welcome, <?=$_SESSION['username']?>!</h3>
-        <strong>SS</strong>
-    </div>
-
-    <ul class="list-unstyled components ">
-        <li>
-            <a href="index.php">
-                Pending Approval
-            </a>
-        </li>
-        <li>
-            <a href="approved.php">
-               Approved
-            </a>
-        </li>
-        <li>
-            <a href="viewall.php">
-                View All
-            </a>
-        </li>
-        <li>
-            <a href="final_approval.php">
-                Final approval
-            </a>
-        </li>
-    </ul>
-
-
-</nav>
+<?php include "sidebar.php" ?> 
 
 
 
@@ -62,7 +34,8 @@
                         <a class="nav-link" href="#">Student Registration Portal</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../backend/logout.php"><button class="btn-sm btn btn-outline-primary">Logout</button></a>
+                        <a class="nav-link" href="../backend/logout.php"><button
+                                class="btn-sm btn btn-outline-primary">Logout</button></a>
                     </li>
 
                 </ul>
@@ -71,83 +44,106 @@
     </nav>
 
     <div class="container main-content">
+        <form>
+            <div class="form-row">
+                <div class="col">
+                    Department
+                    <select onchange="filter(this.value,division.value)" class="custom-select my-1 mr-sm-2" id="department">
+                        <option selected value="%">All</option>
+                        <option value="IT">IT</option>
+                        <option value="CS">CS</option>
+                        <option value="EXTC">EXTC</option>
+                    </select>
+                </div>
+                <div class="col">
+                    Division
+                    <select onchange="filter(department.value,this.value)" class="custom-select my-1 mr-sm-2" id="division">
+                        <option selected value="%">All</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+    
+                    </select>
+                </div>
+            </div>
+        </form>
+        <br>
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Roll Number</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Division</th>
                     <th scope="col">Documents</th>
-                    <th scope="col">View</th>
                     <th scope="col">Form</th>
                     <th scope="col">Actions</th>
-                    
-                    
+
+
                 </tr>
             </thead>
             <tbody>
                 <tr>
-    
-                <?php 
+
+                    <?php 
                     $rows=getunapproved($_SESSION['username']) ;
+                    //print_r($rows[0]);
                     foreach($rows as $row){?>
                     <th scope="row"><?=$row['roll_num']?></th>
                     <td><?=$row['student_name']?></td>
-                  
+                    <td><?=$row['department']?></td>
+                    <td><?=$row['division']?></td>
+
                     <td>
                         <div class="list-group">
-                            <button type="button" class="list-group-item list-group-item-action"><?=$row['name']?>
-                                </button>
-                         
+                            <button type="button" class="list-group-item list-group-item-action">
+                                <a target="_blank" href="<?=$row['doc_url']?>"><?=$row['name']?> </a>
+                            </button>
+
                         </div>
                     </td>
-                    
-                   
-                    <td>
 
-                        <button class="btn btn-info"><a href="<?=$row['doc_url']?>">View </a></button>
-                    </td>
-                  
-                
-                    
                     <?php
                     if($row['roll_num']!=""){?>
                     <form action="viewing.php" method="post">
-                    <td>
-                      <button  type="submit" class="btn btn-info "  id="<?=$row['roll_num']?>" name="form_view" >View</button>
-                    </td>
-                    <input type="hidden" value="<?=$row['roll_num']?>" name="input2"/>
+                        <td>
+                            <button type="submit" class="btn btn-info " id="<?=$row['roll_num']?>"
+                                name="form_view">View</button>
+                        </td>
+                        <input type="hidden" value="<?=$row['roll_num']?>" name="input2" />
                     </form>
                     <?php } 
                     else{ ?>
-                        <td></td>
+                    <td></td>
                     <?php }
                     ?>
 
-                  <?php
+                    <?php
                     if($row['roll_num']!=""){?>
-                    <td >
+                    <td>
                         <div class="container">
-                            <button class="btn btn-success" name="<?=$_SESSION['username']?>" id="<?=$row['roll_num']?>" onclick="approving(this.id,this.name)">Approve</button>
+                            <button class="btn btn-success" name="<?=$_SESSION['username']?>" id="<?=$row['roll_num']?>"
+                                onclick="approving(this.id,this.name)">Approve</button>
 
                         </div>
                         <div class="container" style="margin-top: 5%">
-                            <button class="btn btn-danger" id="<?=$_SESSION['username']?>" name="<?=$row['roll_num']?>" onclick="sendback(this.id,this.name)">Send Back</button>
+                            <button class="btn btn-danger" id="<?=$_SESSION['username']?>" name="<?=$row['roll_num']?>"
+                                onclick="sendback(this.id,this.name)">Send Back</button>
                         </div>
                     </td>
                     <?php } 
                 else{ ?>
                     <td></td>
-                <?php }
+                    <?php }
                 ?>
-                 
+
                 </tr>
-                 <?php }?>
-               
-                
+                <?php }?>
+
+
             </tbody>
         </table>
     </div>
-            
+
 </div>
 
 
