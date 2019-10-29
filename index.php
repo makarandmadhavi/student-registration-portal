@@ -51,7 +51,7 @@ if(isset($_SESSION['logintype'])){
     </div>
 
 
-    <div style="max-width: 500px;" class="add-box container" id="enter" onkeypress="enter()">
+    <div style="max-width: 500px;" class="add-box container" id="enter">
         <div>
             <h1 class="text-center">Login</h1>
         </div>
@@ -79,21 +79,14 @@ if(isset($_SESSION['logintype'])){
     <script src="assets/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
     <script>
-    function enter() {
-        //alert("works");
-        input = document.getElementById("enter");
-        input.addEventListener("keyup", function (event) {
-            //console.log(event.keyCode);
-            // Number 13 is the "Enter" key on the keyboard
-            if (event.keyCode == 13) {
-                // Cancel the default action, if needed
-                event.preventDefault();
-                login();
-                //alert("works");
-            }
+        $(document).ready(function () {
+            $("#enter").keypress(function (event) {
+                console.log(event.keyCode);
+                if(event.keyCode == 13){
+                    login();
+                }
+            });
         });
-        
-    }
     </script>
 </body>
 

@@ -39,7 +39,7 @@
 
     ?>
     <div class="container main-content">
-        <h3>Application Status : Pending submission from student</h3>
+        <h3>Application Status :</h3>
         <div class="progress">
             <?php if ($ac && $udoc) { ?>
                 <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"

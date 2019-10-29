@@ -46,6 +46,7 @@
                     <th scope="col">Department</th>
                     <th scope="col">Name</th>
                     <th scope="col">Documents</th>
+                    <th scope="col">Student Copy</th>
                     <th scope="col">Send</th>
                     
                 </tr>
@@ -75,6 +76,9 @@
 
                     <?php
                     if($row['roll_num']!=""){?>
+                     <td>
+                      <button  class="btn btn-info "  id="<?=$row['roll_num']?>"  name="form" > <a href="../pdf/<?=$row['roll_num']?>.pdf" target="_blank">Student Copy</a> </button>
+                    </td>
                 
                     <form action="studentcopy.php" method="post">
                     <td>
