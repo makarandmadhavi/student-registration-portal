@@ -51,12 +51,12 @@ if(isset($_SESSION['logintype'])){
     </div>
 
 
-    <div style="max-width: 500px;" class="add-box container">
+    <div style="max-width: 500px;" class="add-box container" id="enter" onkeypress="enter()">
         <div>
             <h1 class="text-center">Login</h1>
         </div>
         <div class="container">
-            
+
             <div class="form-group">
                 <label for="exampleInputEmail1">Username</label>
                 <input type="text" class="form-control" id="username" placeholder="username" required>
@@ -68,7 +68,7 @@ if(isset($_SESSION['logintype'])){
 
 
             <button style="margin-left:40%;" type="submit" onclick="login()" class="btn btn-success">login</button>
-             
+
         </div>
 
     </div>
@@ -78,6 +78,23 @@ if(isset($_SESSION['logintype'])){
     <script src="assets/jquery.js"></script>
     <script src="assets/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
+    <script>
+    function enter() {
+        //alert("works");
+        input = document.getElementById("enter");
+        input.addEventListener("keyup", function (event) {
+            //console.log(event.keyCode);
+            // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode == 13) {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                login();
+                //alert("works");
+            }
+        });
+        
+    }
+    </script>
 </body>
 
 </html>
