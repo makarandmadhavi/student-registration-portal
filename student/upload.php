@@ -60,7 +60,7 @@
         </ul> -->
     <br>
 
-
+    
     <form method="post" enctype="multipart/form-data" action="backend/uploadfile.php">
         <div class="table-responsive table-hover table-striped">
             <table class="table" width="300">

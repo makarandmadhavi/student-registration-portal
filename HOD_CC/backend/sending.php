@@ -51,7 +51,12 @@ $sql = "SELECT * FROM student WHERE roll='$roll' ";
     	echo "sent";
     }
 
-	$sql="DELETE documents_submitted,form,approval FROM documents_submitted INNER JOIN form INNER JOIN approval WHERE documents_submitted.roll=form.roll AND documents_submitted.roll=approval.roll AND documents_submitted.roll='$roll' ";
-	$result = $conn->query($sql);
+    //$sql="DELETE documents_submitted,form,approval FROM documents_submitted INNER JOIN form INNER JOIN approval WHERE documents_submitted.roll=form.roll AND documents_submitted.roll=approval.roll AND documents_submitted.roll='$roll' ";
+    $sql ="DELETE FROM approval where roll = '$roll'";
+    $result = $conn->query($sql);
+    $sql = "DELETE FROM documents_submitted where roll = '$roll'";
+    $result = $conn->query($sql);
+    $sql =  "DELETE FROM form where roll = '$roll'";
+    $result = $conn->query($sql);
 
 ?>

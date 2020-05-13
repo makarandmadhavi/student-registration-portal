@@ -5,12 +5,11 @@
     $data = $_POST;
     $roll = $_SESSION['username']; 
     //C:\xampp\htdocs\student-registration-portal\student
-
     $doc1=$data["doc1"];
     
 	$filename=$_FILES['file1']['name'];
 	$tempname=$_FILES['file1']['tmp_name'];
-	$folder1="../uploadedfiles/".$roll."+".$filename;
+	$folder1="../../uploadedfiles/".$roll."+".$filename;
 	$doc_url="../uploadedfiles/".$roll."+".$filename;
     //$file1=$data["file1"];
 	move_uploaded_file($tempname, $folder1);
@@ -19,7 +18,6 @@
     if($result1){     
            $row = $result1 -> fetch_assoc();
     }
-
     if($row){
     	?>
     <script>
@@ -31,8 +29,7 @@
     }
     else{
     	
-    $sql = "INSERT INTO documents_submitted VALUES ('$roll','$doc1','$doc_url')";
-
+    $sql = "INSERT INTO documents_submitted(roll,name,doc_url) VALUES ('$roll','$doc1','$doc_url')";
     $result = $conn->query($sql);
     if($result){
     	?>
@@ -43,8 +40,5 @@
     </script>
     <?php
     }    
-
    }
-
-
 ?>

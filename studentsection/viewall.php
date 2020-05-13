@@ -53,7 +53,7 @@
                 <tr>
     
                 <?php 
-                    $rows=getstatus() ;
+                    $rows=getstatus() ; 
                     foreach($rows as $row){?>
                     <th scope="row"><?=$row['roll_num']?></th>
 
@@ -66,7 +66,7 @@
                   
                     <td>
                         <div class="list-group">
-                            <button type="button" class="list-group-item list-group-item-action"><?=$row['name']?>
+                            <button type="button" class="list-group-item list-group-item-action"> <a href="<?=$row['doc_url']?>" target="_blank"><?=$row['name']?></a> 
                                 </button>
                          
                         </div>

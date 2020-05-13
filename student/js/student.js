@@ -32,7 +32,7 @@ function saveform(sem) {
             console.log(data);
             //data is returned here
             if (data == "SUCCESS") {
-                alert("Done");
+                //alert("Done");
             } 
         }
     });

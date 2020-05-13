@@ -134,6 +134,7 @@ function getunapproved($user){
             AND documents_submitted.roll=approval.roll
             AND student.department=hod.department
             AND student.department=cc.department
+            AND student.division=cc.division
             ";
         $result = $conn->query($sql);  
     while ($row = $result -> fetch_assoc()){  

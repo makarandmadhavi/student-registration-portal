@@ -104,13 +104,16 @@
 
                     <?php
                     if($row['roll_num']!=""){?>
-                    <form action="viewing.php" method="post">
+                   
                         <td>
+                        <form action="viewing.php" method="post">
                             <button type="submit" class="btn btn-info " id="<?=$row['roll_num']?>"
                                 name="form_view">View</button>
+                                <input type="hidden" value="<?=$row['roll_num']?>" name="input2" />
+                                </form>
                         </td>
-                        <input type="hidden" value="<?=$row['roll_num']?>" name="input2" />
-                    </form>
+                        
+                    
                     <?php } 
                     else{ ?>
                     <td></td>

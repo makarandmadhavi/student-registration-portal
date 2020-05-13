@@ -145,6 +145,6 @@
   <?php  } ?>
 </div>
 
-<a href="studentcopy.php">LINK</a>
+
 </body>
   <?php include '../templates/footer.html'; ?>

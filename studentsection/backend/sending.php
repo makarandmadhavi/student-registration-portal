@@ -19,7 +19,7 @@ $sql = "SELECT * FROM student WHERE roll='$roll' ";
 
     if($row){
     	$mail_id=$row['email'];
-        mail($mail_id,"APPLICATION REJECTED",$msg);
+        //mail($mail_id,"APPLICATION REJECTED",$msg);
         
         include_once('../../PHPMailer-master/src/PHPMailer.php');
         include_once('../../PHPMailer-master/src/SMTP.php');
@@ -55,11 +55,16 @@ $sql = "SELECT * FROM student WHERE roll='$roll' ";
     $data1=array();
     while ($row = $result -> fetch_assoc()){         
         $x='../'.$row['doc_url'];
-        unlink($x);
+        //unlink($x);
         }
 
-	$sql="DELETE documents_submitted,form,approval FROM documents_submitted INNER JOIN form INNER JOIN approval WHERE documents_submitted.roll=form.roll AND documents_submitted.roll=approval.roll AND documents_submitted.roll='$roll' ";
-	$result = $conn->query($sql);
-
+	//$sql="DELETE documents_submitted,form,approval FROM documents_submitted INNER JOIN form INNER JOIN approval WHERE documents_submitted.roll=form.roll AND documents_submitted.roll=approval.roll AND documents_submitted.roll='$roll' ";
+	//$result = $conn->query($sql);
+    $sql ="DELETE FROM approval where roll = '$roll'";
+    $result = $conn->query($sql);
+    $sql = "DELETE FROM documents_submitted where roll = '$roll'";
+    $result = $conn->query($sql);
+    $sql =  "DELETE FROM form where roll = '$roll'";
+    $result = $conn->query($sql);
 
 ?>
